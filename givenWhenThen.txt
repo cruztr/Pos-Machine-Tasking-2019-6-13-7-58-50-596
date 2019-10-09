@@ -1,0 +1,44 @@
+GIVEN '0001' 
+WHEN isBarcodeValid
+THEN return true
+
+GIVEN '999999999' 
+WHEN isBarcodeValid
+THEN return false
+
+
+
+GIVEN '0001' 
+WHEN isBarcodeExisting
+THEN return true
+
+GIVEN '9999' 
+WHEN isBarcodeExisting
+THEN return false
+
+
+
+GIVEN ['0001', '0003', '0005', '0003', '0001', '0001', '0001']
+WHEN getUniqueBarcodes
+THEN return ['0001', '0003', '0005']
+
+
+
+GIVEN input barcode array ['0001', '0003', '0005', '0003'] and 
+	unique barcode array ['0001', '0003', '0005']
+WHEN formatReceipt
+THEN return complete receipt string
+
+
+GIVEN ['0001', '000312', '0005', '0003'] 
+WHEN printReceipt
+THEN return [ERROR]: Barcode is invalid!
+
+GIVEN ['0001', '9999', '0005', '0003']
+WHEN printReceipt
+THEN return [ERROR]: Barcode is not existing!
+
+GIVEN '9999' 
+WHEN printReceipt
+THEN return complete receipt string
+
